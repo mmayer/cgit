@@ -63,8 +63,17 @@ ifeq ($(uname_S),Linux)
 	HAVE_LINUX_SENDFILE = YesPlease
 endif
 
+ifeq ($(uname_S),Darwin)
+	IS_DARWIN = yes
+endif
+
 ifdef HAVE_LINUX_SENDFILE
 	CGIT_CFLAGS += -DHAVE_LINUX_SENDFILE
+endif
+
+ifdef IS_DARWIN
+	CGIT_CFLAGS += -DNEED_MEMRCHR
+	CGIT_OBJ_NAMES += memrchr.o
 endif
 
 CGIT_OBJ_NAMES += cgit.o
