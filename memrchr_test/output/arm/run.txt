@@ -1,0 +1,8 @@
+execution time: 18.61453 seconds
+his is my very nice test string.
+execution time: 15.39163 seconds
+his is my very nice test string.
+execution time: 13.56957 seconds
+his is my very nice test string.
+execution time: 13.55493 seconds
+his is my very nice test string.
