@@ -1,0 +1,9 @@
+-rw-r--r--  1 mmayer  staff  656 29 Jan 10:02 memrchr.o
+-rw-r--r--  1 mmayer  staff  656 29 Jan 10:02 memrchr2.o
+-rw-r--r--  1 mmayer  staff  656 29 Jan 10:02 memrchr3.o
+-rw-r--r--  1 mmayer  staff  648 29 Jan 10:02 memrchr4.o
+
+-rw-r--r--  1 mmayer  staff  835 29 Jan 10:02 memrchr.s
+-rw-r--r--  1 mmayer  staff  835 29 Jan 10:02 memrchr2.s
+-rw-r--r--  1 mmayer  staff  825 29 Jan 10:02 memrchr3.s
+-rw-r--r--  1 mmayer  staff  818 29 Jan 10:02 memrchr4.s
