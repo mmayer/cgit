@@ -17,6 +17,7 @@ SHA1_HEADER = <openssl/sha.h>
 GIT_VER = 2.39.0
 GIT_URL = https://www.kernel.org/pub/software/scm/git/git-$(GIT_VER).tar.xz
 INSTALL = install
+STRIP = strip
 COPYTREE = cp -r
 MAN5_TXT = $(wildcard *.5.txt)
 MAN_TXT  = $(MAN5_TXT)
@@ -85,6 +86,7 @@ test:
 install: all
 	$(INSTALL) -m 0755 -d $(DESTDIR)$(CGIT_SCRIPT_PATH)
 	$(INSTALL) -m 0755 cgit $(DESTDIR)$(CGIT_SCRIPT_PATH)/$(CGIT_SCRIPT_NAME)
+	$(STRIP) $(DESTDIR)$(CGIT_SCRIPT_PATH)/$(CGIT_SCRIPT_NAME)
 	$(INSTALL) -m 0755 -d $(DESTDIR)$(CGIT_DATA_PATH)
 	$(INSTALL) -m 0644 cgit.css $(DESTDIR)$(CGIT_DATA_PATH)/cgit.css
 	$(INSTALL) -m 0644 cgit.js $(DESTDIR)$(CGIT_DATA_PATH)/cgit.js
