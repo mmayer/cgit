@@ -1,0 +1,12 @@
+#!/bin/sh
+prg=`basename $0`
+arch=`uname -m`
+
+cgit=`find $INSTALLER_PAYLOAD_DIR -name cgit.cgi`
+echo "cgit is $cgit"
+if ! file "$cgit" | grep $arch >/dev/null; then
+	echo "cgit: Wrong architecture. Want $arch." 1>&2
+	exit 1
+fi
+
+exit 0
