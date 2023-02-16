@@ -1,0 +1,20 @@
+#!/bin/sh
+prg=`basename $0`
+
+cgitrc_sample=`find $INSTALLER_PAYLOAD_DIR -name cgitrc.sample`
+
+# Don't do anything if the sample config file is not contained in the package.
+test "$cgitrc_sample" = "" && exit 0
+
+conf_dir=`dirname "$cgitrc_sample"`
+conf_basename=`basename "$cgitrc_sample" .sample`
+live_config="$conf_dir/$conf_basename"
+
+if [ ! -e "$live_config" ]; then
+	echo "cgit: $live_config does NOT exist. Creating it."
+	cp "$cgitrc_sample" "$live_config"
+else
+	echo "cgit: $live_config already exists. Leaving it."
+fi
+
+exit 0
