@@ -1,7 +1,7 @@
 #!/bin/sh
 pkg=`basename $0`
 
-ARCHS='x86_64 arm64'
+ARCHS=${ARCHS:-'arm64 x86_64'}
 OUTPUT_DIR='macos/output'
 
 die()
