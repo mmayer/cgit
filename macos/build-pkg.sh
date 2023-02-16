@@ -21,7 +21,8 @@ for arch in $ARCHS; do
 	make -j CFLAGS="-O2 -target $arch-apple-macos11" install
 	cgi=`find "$DESTDIR" -name cgit.cgi`
 	strip "$cgi"
-	pkgbuild --root "$DESTDIR" --identifier cgit cgit-$arch.pkg
+	pkgbuild --root "$DESTDIR" --scripts `dirname $0`/pkg-scripts \
+		--identifier cgit cgit-$arch.pkg
 	make clean
 	make -C git clean
 done
