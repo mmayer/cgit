@@ -18,11 +18,11 @@ for arch in $ARCHS; do
 	export DESTDIR
 	rm -rf "$DESTDIR"
 	test -d "$outdir" || mkdir -p "$outdir"
-	make -j CFLAGS="-O2 -target $arch-apple-macos11" install
+	make -j CFLAGS="-O2 -target $arch-apple-macos11.3" install || exit 1
 	cgi=`find "$DESTDIR" -name cgit.cgi`
 	strip "$cgi"
 	pkgbuild --root "$DESTDIR" --scripts `dirname $0`/pkg-scripts \
-		--identifier cgit cgit-$arch.pkg
+		--identifier cgit cgit-$arch.pkg || exit 1
 	make clean
 	make -C git clean
 done
