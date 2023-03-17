@@ -32,7 +32,7 @@ ifdef NO_LUA
 	CGIT_CFLAGS += -DNO_LUA
 else
 ifeq ($(LUA_PKGCONFIG),)
-	LUA_PKGCONFIG := $(shell for pc in luajit lua lua5.2 lua5.1; do \
+	LUA_PKGCONFIG := $(shell for pc in luajit lua lua-5.4 lua5.4 lua5.3 lua5.2 lua5.1; do \
 			$(PKG_CONFIG) --exists $$pc 2>/dev/null && echo $$pc && break; \
 			done)
 	LUA_MODE := autodetected
