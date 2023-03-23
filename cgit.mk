@@ -41,8 +41,8 @@ else
 endif
 ifneq ($(LUA_PKGCONFIG),)
 	LUA_MESSAGE := linking with $(LUA_MODE) $(LUA_PKGCONFIG)
-	LUA_LIBS := $(shell $(PKG_CONFIG) --libs $(LUA_PKGCONFIG) 2>/dev/null)
-	LUA_CFLAGS := $(shell $(PKG_CONFIG) --cflags $(LUA_PKGCONFIG) 2>/dev/null)
+	LUA_LIBS ?= $(shell $(PKG_CONFIG) --libs $(LUA_PKGCONFIG) 2>/dev/null)
+	LUA_CFLAGS ?= $(shell $(PKG_CONFIG) --cflags $(LUA_PKGCONFIG) 2>/dev/null)
 	CGIT_LIBS += $(LUA_LIBS)
 	CGIT_CFLAGS += $(LUA_CFLAGS)
 else
