@@ -16,5 +16,5 @@ make configure
 # Setting AR to /usr/bin/ar is *VERY* important. If "gar" (GNU ar) happens to be
 # installed, the build would otherwise fail, since gar can't handle the macOS
 # archive format correctly.
-AR=/usr/bin/ar CFLAGS=-O2 ./configure $@
+AR=/usr/bin/ar CFLAGS=-O2 ./configure --prefix=/opt/cgit $@
 )
