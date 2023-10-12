@@ -1,5 +1,5 @@
 #!/bin/sh
-pkg=`basename $0`
+prg=`basename $0`
 
 ARCHS=${ARCHS:-'arm64 x86_64'}
 OUTPUT_DIR='macos/output'
