@@ -4,7 +4,8 @@ CGIT_VERSION = v1.2.3
 CGIT_SCRIPT_NAME = cgit.cgi
 CGIT_SCRIPT_PATH = /var/www/htdocs/cgit
 CGIT_DATA_PATH = $(CGIT_SCRIPT_PATH)
-CGIT_CONFIG = /etc/cgitrc
+CGIT_CONFIG_PATH = /etc
+CGIT_CONFIG = $(CGIT_CONFIG_DIR)/cgitrc
 CACHE_ROOT = /var/cache/cgit
 prefix = /usr/local
 libdir = $(prefix)/lib
@@ -87,6 +88,8 @@ install: all
 	$(INSTALL) -m 0755 -d $(DESTDIR)$(CGIT_SCRIPT_PATH)
 	$(INSTALL) -m 0755 cgit $(DESTDIR)$(CGIT_SCRIPT_PATH)/$(CGIT_SCRIPT_NAME)
 	$(STRIP) $(DESTDIR)$(CGIT_SCRIPT_PATH)/$(CGIT_SCRIPT_NAME)
+	$(INSTALL) -m 0755 -d $(DESTDIR)$(prefix)/$(CGIT_CONFIG_PATH)
+	$(INSTALL) -m 0644 cgitrc.sample $(DESTDIR)$(prefix)/$(CGIT_CONFIG_PATH)/cgitrc.sample
 	$(INSTALL) -m 0755 -d $(DESTDIR)$(CGIT_DATA_PATH)
 	$(INSTALL) -m 0644 cgit.css $(DESTDIR)$(CGIT_DATA_PATH)/cgit.css
 	$(INSTALL) -m 0644 cgit.js $(DESTDIR)$(CGIT_DATA_PATH)/cgit.js
