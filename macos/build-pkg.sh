@@ -29,6 +29,8 @@ for arch in $ARCHS; do
 		install || exit 1
 	cgi=`find "$DESTDIR" -name cgit.cgi`
 	strip "$cgi"
+	install -m 0644 macos/cgit-apache.conf \
+		macos/output/$arch/install/opt/cgit/etc
 	if [ $skip_mode = 0 ]; then
 		pkgbuild --root "$DESTDIR" --scripts `dirname $0`/pkg-scripts \
 			--identifier cgit cgit-$arch.pkg || exit 1
