@@ -1,20 +1,25 @@
 #!/bin/sh
 prg=`basename $0`
 
-cgitrc_sample=`find $INSTALLER_PAYLOAD_DIR -name cgitrc.sample`
+live_tmp="$SHARED_INSTALLER_TEMP/live_conf.txt"
+sample_tmp="$SHARED_INSTALLER_TEMP/sample_conf.txt"
 
-# Don't do anything if the sample config file is not contained in the package.
-test "$cgitrc_sample" = "" && exit 0
+# Retreive the information preinstall stored for us. We can't look this up
+# ourselves.
+live_config=`cat "$live_tmp"`
+sample_config=`cat "$sample_tmp"`
 
-conf_dir=`dirname "$cgitrc_sample"`
-conf_basename=`basename "$cgitrc_sample" .sample`
-live_config="$conf_dir/$conf_basename"
-
-if [ ! -e "$live_config" ]; then
-	echo "cgit: $live_config does NOT exist. Creating it."
-	cp "$cgitrc_sample" "$live_config"
-else
-	echo "cgit: $live_config already exists. Leaving it."
+if [ -e "$live_config" ]; then
+	echo "cgit: $live_config exists, leaving it alone."
+	exit 0
 fi
+
+if [ ! -r "$sample_config" ]; then
+	echo "cgit: $sample_config not packaged. Can't create initial config."
+	exit 0
+fi
+
+echo "cgit: $live_config does NOT exist. Creating it."
+cp "$sample_config" "$live_config"
 
 exit 0

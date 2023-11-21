@@ -3,10 +3,24 @@ prg=`basename $0`
 arch=`uname -m`
 
 cgit=`find $INSTALLER_PAYLOAD_DIR -name cgit.cgi`
-echo "cgit is $cgit"
+
+echo "cgit: binary is $cgit"
+
 if ! file "$cgit" | grep $arch >/dev/null; then
 	echo "cgit: Wrong architecture. Want $arch." 1>&2
 	exit 1
 fi
 
-exit 0
+live_tmp="$SHARED_INSTALLER_TEMP/live_conf.txt"
+sample_tmp="$SHARED_INSTALLER_TEMP/sample_conf.txt"
+cgitrc_sample=`find $INSTALLER_PAYLOAD_DIR -name cgitrc.sample`
+cgitrc_sample=`echo "$cgitrc_sample" | sed -e 's,.*/Root,,'`
+conf_dir=`dirname "$cgitrc_sample"`
+conf_basename=`basename "$cgitrc_sample" .sample`
+live_config="$conf_dir/$conf_basename"
+
+# Store the information for postinstall. The $INSTALLER_PAYLOAD_DIR will be
+# empty by the time postinstall runs. So, postinstall can't look up this
+# information by itself.
+echo "$live_config" >$live_tmp
+echo "$cgitrc_sample" >$sample_tmp
