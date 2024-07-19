@@ -1,3 +1,8 @@
+ifeq (,$(wildcard .git))
+$(info Updating Git submodule...)
+$(shell git submodule init && git submodule update)
+endif
+
 # This Makefile is run in the "git" directory in order to re-use Git's
 # build variables and operating system detection.  Hence all files in
 # CGit's directory must be prefixed with "../".
