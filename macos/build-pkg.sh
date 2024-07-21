@@ -22,6 +22,7 @@ for arch in $ARCHS; do
 	rm -rf "$DESTDIR"
 	test -d "$outdir" || mkdir -p "$outdir"
 	PATH=/usr/bin:/bin make -j \
+		prefix=/opt/cgit \
 		LUA_PKGCONFIG=lua \
 		CFLAGS="-O2 -target $arch-apple-macos11.3 -std=c2x" \
 		LUA_CFLAGS="-I`pwd`/../lua" \
