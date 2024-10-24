@@ -23,7 +23,7 @@ for arch in $ARCHS; do
 	test -d "$outdir" || mkdir -p "$outdir"
 	PATH=/usr/bin:/bin make -j \
 		LUA_PKGCONFIG=lua \
-		CFLAGS="-O2 -target $arch-apple-macos11.3 -std=c2x" \
+		CFLAGS="-O2 -target $arch-apple-macos11.3" \
 		LUA_CFLAGS="-I`pwd`/../lua" \
 		LUA_LIBS="`pwd`/../lua/liblua-$arch.a" \
 		install || exit 1
