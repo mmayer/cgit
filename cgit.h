@@ -401,4 +401,8 @@ extern char *expand_macros(const char *txt);
 
 extern char *get_mimetype_for_filename(const char *filename);
 
+#ifdef NEED_MEMRCHR
+extern void *memrchr(const void *s, int c, size_t n);
+#endif
+
 #endif /* CGIT_H */
